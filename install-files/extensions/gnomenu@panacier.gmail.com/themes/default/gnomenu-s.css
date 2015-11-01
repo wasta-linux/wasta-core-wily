@@ -1,0 +1,331 @@
+
+/* ::::::::::  PANEL- BUTTONS :::::::::::: */
+
+.gnomenu-panel-button {
+    padding: 0 6px 2px}
+
+.gnomenu-panel-menu-button {
+    padding: 0 6px 2px}
+
+.gnomenu-panel-menu-icon {
+    padding-right: 2px }
+
+/* ::::::::::  MAIN-MENU-BOX :::::::::::: */
+
+.gnomenu-main-menu-box {
+    padding: 0 15px }
+
+.gnomenu-menu-top-pane {
+    padding-bottom: 15px }
+
+/* ::::::::::  USER-GROUP-BOX :::::::::::: */
+
+.gnomenu-user-group-box {
+    background-color: rgba(136,138,133,0.2);
+    border-color: rgba(136,138,133,0.3);
+    border-radius: 4px;
+    border-width: 1px }
+
+/*  user-group-buttons  */
+
+.gnomenu-user-group-button {
+    border: 0;
+    border-radius: 2px;
+    padding: 1px 7px 2px;
+    min-width: 39px }
+
+.gnomenu-user-group-button:open {
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: inset  0 1px 5px 1px rgba(0,0,0, 0.2);
+    font-weight: bold }
+
+.gnomenu-user-group-button:hover {
+    background-color: rgba(238, 238, 236, 0.1);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.0) }
+
+.gnomenu-user-group-button:pressed {
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: inset  0 1px 5px 1px rgba(0,0,0, 0.2) }
+
+.gnomenu-user-group-button:insensitive {
+    opacity: 0.7 }
+
+/* ::::::::::  VIEW-MODE-BOX :::::::::::: */
+
+.gnomenu-view-mode-box {
+    background-color: rgba(136,138,133,0.2);
+    border-color: rgba(136,138,133,0.3);
+    border-radius: 4px 0 0 4px;
+    border-width: 1px;
+    margin-left: 15px;
+    spacing: 0 }
+
+/*  view-mode-buttons  */
+
+.gnomenu-view-mode-button {
+    border-radius: 2px 0 0 2px;
+    border-width: 0;
+    padding: 4px 7px;
+    min-width: 17px }
+
+.gnomenu-view-mode-button:open {}
+
+.gnomenu-view-mode-button:hover {
+    background-color: rgba(238, 238, 236, 0.1);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.0) }
+
+.gnomenu-view-mode-button:pressed {
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: inset  0 1px 5px 1px rgba(0,0,0, 0.2) }
+
+/* ::::::::::  SEARCH-ENTRY :::::::::::: */
+
+#gnomenuMenuMainbox .search-entry {
+    background-color: rgba(136,138,133,0.2);
+    border: 1px solid rgba(136,138,133,0.3);
+    border-radius: 0 4px 4px 0;
+    border-left-width: 0;
+    width: 260px;
+    font-size: 10pt;
+    padding: 2px 4px }
+
+#gnomenuMenuMainbox .search-entry-icon {
+    font-size: 9pt }
+
+/* ::::::::::  SHORTCUTS-SCROLLBOX :::::::::::: */
+
+.gnomenu-shortcuts-scrollbox {
+    border-color: rgba(136,138,133,0.3);
+    border-radius: 4px 0 0 4px;
+    border-width: 1px;
+    padding: 4px }
+
+.gnomenu-shortcuts-box {
+    spacing: 4px }
+
+/*  shortcut-buttons  */
+
+.gnomenu-shortcut-button {
+    border-radius: 3px;
+    border-width: 1px;
+    padding: 3px }
+
+.gnomenu-shortcut-symbolic-button {
+    border-width: 1px;
+    padding: 5px}
+
+.gnomenu-shortcut-button:open {
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: inset  0 1px 5px 1px rgba(0,0,0, 0.2);
+    border-color: rgba(136,138,133,0.3);
+    font-weight: bold }
+
+.gnomenu-shortcut-button:hover {
+    background-color: rgba(238, 238, 236, 0.1);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.0);
+    border-color: rgba(136,138,133,0.4) }
+
+.gnomenu-shortcut-button:pressed {
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: inset  0 1px 5px 1px rgba(0,0,0, 0.2);
+    border-color: rgba(136,138,133,0.3) }
+
+/* ::::::::::  CATEGORIES-WORKSPACES :::::::::::: */
+
+.gnomenu-categories-workspaces-wrapper {
+    padding: 0px }
+
+.gnomenu-categories-workspaces-scrollbox {
+    border-radius: 0 4px 0 0;
+    border-color: rgba(136,138,133,0.3);
+    border-width: 1px;
+    border-left: 0;
+    height: 364px;
+    padding: 0 }
+
+/*  workspace-thumbnails  */
+
+.gnomenu-workspace-thumbnails {
+    spacing: 6px }
+
+.gnomenu-workspaces-background {
+    padding: 9px;
+    padding-right: 10px }
+
+/*  categories  */
+
+.gnomenu-categories-box {
+    padding: 4px;
+    padding-right: 5px;
+    spacing: 4px }
+
+.gnomenu-category-button {
+    border-radius: 3px;
+    border-width: 1px;
+    padding: 0px }
+
+.gnomenu-category-button-label {
+    font-size: 9pt;
+    padding: 3px 7px 4px }
+
+.gnomenu-category-button:open {
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: inset  0 1px 5px 1px rgba(0,0,0, 0.2);
+    border-color: rgba(136,138,133,0.3);
+    font-weight: bold }
+
+.gnomenu-category-button:hover {
+    background-color: rgba(238, 238, 236, 0.1);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.0);
+    border-color: rgba(136,138,133,0.4) }
+
+.gnomenu-category-button:pressed {
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: inset  0 1px 5px 1px rgba(0,0,0, 0.2);
+    border-color: rgba(136,138,133,0.3) }
+
+/* :::::::::: POWER-GROUP-BOX  :::::::::::: */
+
+.gnomenu-power-group-box {
+    padding: 10px 6px6px 6px;
+    spacing: 2px }
+
+/*  power-group-buttons  */
+
+.gnomenu-power-group-button {
+    border-radius: 16px;
+    border-width: 1px;
+    padding: 7px }
+
+.gnomenu-power-group-button:open {
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: inset  0 1px 5px 1px rgba(0,0,0, 0.2);
+    border-color: rgba(136,138,133,0.3);
+    font-weight: bold }
+
+.gnomenu-power-group-button:hover {
+    background-color: rgba(238, 238, 236, 0.1);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.0);
+    border-color: rgba(136,138,133,0.4) }
+
+.gnomenu-power-group-button:pressed {
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: inset  0 1px 5px 1px rgba(0,0,0, 0.2);
+    border-color: rgba(136,138,133,0.3) }
+
+/* :::::::::: APPLICATIONS-SCROLLBOX  :::::::::::: */
+
+.gnomenu-applications-scrollbox {
+    border-color: rgba(136,138,133,0.3);
+    border-bottom: 1px;
+    padding-left: 15px;
+    width: 334px }
+
+/*  scrollbar  */
+
+#gnomenuMenuMainbox StScrollView StScrollBar {
+    min-width: 6px;
+    min-height: 6px }
+
+#gnomenuMenuMainbox StScrollBar StButton#vhandle, 
+#gnomenuMenuMainbox StScrollBar StButton#hhandle {
+    margin: 0 }
+
+
+/* :::::::::: APPLICATIONS-LIST-BOX  :::::::::::: */
+
+.gnomenu-applications-list-box {
+    padding: 0;
+    spacing: 4px }
+
+/*  list-buttons  */
+
+.gnomenu-application-list-button {
+    border-radius: 3px;
+    border-width: 1px;
+    padding: 1px 7px 2px }
+
+.gnomenu-application-list-button-label {
+    padding-left: 14px }
+
+.gnomenu-application-list-button:open {
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: inset  0 1px 5px 1px rgba(0,0,0, 0.2);
+    border-color: rgba(136,138,133,0.3);
+    font-weight: bold }
+
+.gnomenu-application-list-button:hover {
+    background-color: rgba(238, 238, 236, 0.1);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.0);
+    border-color: rgba(136,138,133,0.4) }
+
+.gnomenu-application-list-button:pressed {
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: inset  0 1px 5px 1px rgba(0,0,0, 0.2);
+    border-color: rgba(136,138,133,0.3) }
+
+/* :::::::::: APPLICATIONS-GRID-BOX  :::::::::::: */
+
+.gnomenu-applications-grid-box {
+    padding: 0 }
+
+/*  grid-buttons  */
+
+.gnomenu-application-grid-button {
+    border-radius: 3px;
+    border-width: 1px;
+    padding: 6px;
+    width: 50px;
+    height: 44px }
+
+.gnomenu-application-grid-button-label {
+    font-size: 7.5pt;
+    font-weight: bold;
+    padding-bottom: 2px;
+    text-align: center;
+    width: 42px }
+
+.gnomenu-application-grid-button:open {
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: inset  0 1px 5px 1px rgba(0,0,0, 0.2);
+    border-color: rgba(136,138,133,0.3);
+    font-weight: bold }
+
+.gnomenu-application-grid-button:hover {
+    background-color: rgba(238, 238, 236, 0.1);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.0);
+    border-color: rgba(136,138,133,0.4) }
+
+.gnomenu-application-grid-button:pressed {
+    background-color: rgba(0, 0, 0, 0.2);
+    box-shadow: inset  0 1px 5px 1px rgba(0,0,0, 0.2);
+    border-color: rgba(136,138,133,0.3) }
+
+/* :::::::::: SELECTED-APP-BOX  :::::::::::: */
+
+.gnomenu-selected-app-box {
+    text-align: right;
+    max-width: 100px }
+
+.gnomenu-selected-app-title {
+    padding-right: 6px;
+    padding-top: 10px;
+    font-weight: bold;
+    font-size: 9pt }
+
+.gnomenu-selected-app-description {
+    padding-right: 8px;
+    font-size: 7pt }
+
+
+
+
+
+
+
+
+
+
+
+
+

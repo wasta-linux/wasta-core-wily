@@ -1,0 +1,15 @@
+install-files/applications                 usr/share
+install-files/bin                          usr
+install-files/extensions                   usr/share/gnome-shell
+install-files/extensions/*/schemas/*.gschema.xml  usr/share/glib-2.0/schemas
+install-files/firefox-addons               usr/lib
+install-files/icons                        usr/share
+install-files/lightdm.conf.d               etc/lightdm
+install-files/plymouth-themes/*            lib/plymouth/themes
+install-files/schemas                      usr/share/glib-2.0
+install-files/skel                         etc
+install-files/themes                       usr/share
+install-files/xdg                          etc
+install-files/org.wasta.apps.policy        usr/share/polkit-1/actions
+install-files/wasta-release                etc
+wasta-core                                 usr/share

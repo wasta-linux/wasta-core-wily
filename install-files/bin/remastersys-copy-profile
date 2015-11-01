@@ -1,0 +1,171 @@
+#!/bin/bash
+
+# ==============================================================================
+# remastersys-copy-profile.sh:
+#
+#   Copy current user profile settings to default user profile and root location.
+#
+#   Needed before running remastersys.
+#
+#   2013-01-07 rik: Initial script
+#   2013-06-28 rik: Made sure GRUB_HIDDEN_TIMEOUT activated so won't show on
+#       new device after restoring remastersys image.
+#   2014-01-28 rik: removed /etc/skel/.config/libreoffice as now depend libreoffice
+#       extension to provide custom settings.
+#   2014-03-11 rik: added ~/.cinnamon/ folder
+#       - added ~/.xinput.d/ folder
+#   2014-06-14 rik: removing ~/.config/gtk-3.0/ folder
+#   2014-07-22 rik: adding boot repair to LIVE CD only (thanks jcl).
+#   2014-12-22 rik: breaking out profile setup to separate script.
+#
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Setup script to run with superuser permissions
+# ------------------------------------------------------------------------------
+if [ "$(whoami)" != "root" ]; then
+    echo
+    echo "This script needs to run with superuser permissions."
+    echo "----------------------------------------------------"
+    # below will return <blank> if user not in sudo group
+    OUT=$(groups $(whoami) | grep "sudo")
+
+    if [ "$OUT" ]; then
+        # user has sudo permissions: use them to re-run the script
+        echo && echo "If prompted, enter the sudo password."
+        #re-run script with sudo
+        sudo bash $0 $*
+        LASTERRORLEVEL=$?
+    else
+        #user doesn't have sudo: limited user, so prompt for sudo user
+        until [ "$OUT" ]; do
+            echo && echo "Current user doesn't have sudo permissions." && echo
+            read -p "Enter admin id (blank for root) to run this script:  " SUDO_ID
+
+            # set SUDO_ID to root if nothing was entered
+            if [ "$SUDO_ID" ]; then
+                OUT=$(groups ${SUDO_ID} | grep "sudo")
+            else
+                SUDO_ID="root"
+                # manually assign $OUT to anything because we will use root!
+                OUT="root"
+            fi
+        done
+
+        # re-run script with $SUDO_ID 
+        echo
+        echo "Enter password for $SUDO_ID (need to enter twice)."
+        su --login $SUDO_ID -c "sudo bash ${DIR}/$(basename $0) $*"
+        LASTERRORLEVEL=$?
+
+        # give 2nd chance if entered pwd wrong (su doesn't give 2nd chance)
+        if [ $LASTERRORLEVEL == 1 ]; then
+            su --login $SUDO_ID -c "sudo bash ${DIR}/$(basename $0) $*"
+            LASTERRORLEVEL=$?
+        fi
+    fi
+
+    echo
+    read -p "FINISHED:  Press <ENTER> to exit..."
+    exit $LASTERRORLEVEL
+fi
+
+# ------------------------------------------------------------------------------
+# Initial prompt
+# ------------------------------------------------------------------------------
+echo
+echo "========================================================================="
+echo "=== remastersys-copy-profile ============================================"
+echo "========================================================================="
+echo
+echo "This should be run before using remastersys to make a custom Wasta-Linux"
+echo "  ISO installer of the current system."
+echo
+read -p "Press <Enter> to continue..."
+
+# ------------------------------------------------------------------------------
+# main
+# ------------------------------------------------------------------------------
+
+echo
+echo "*** Calling default-profile-setup.sh script"
+echo
+bash /usr/share/wasta-base-setup/setup/default-profile-setup.sh
+
+# ------------------------------------------------------------------------------
+# Add BOOT-REPAIR to LIVE DVD if not already installed
+# ------------------------------------------------------------------------------
+if [ -x /usr/bin/boot-repair ]; then
+  echo "  boot-repair installed.   Ensuring that it is not removed..."
+  sed -i \
+        -e '\|^apt-get remove --yes boot-repair|d' \
+     /usr/bin/remastersys
+
+  if [ -e /etc/init.d/remastersys-firstboot ]; then
+    sed -i \
+          -e '\|^apt-get remove --yes boot-repair|d' \
+       /etc/init.d/remastersys-firstboot
+  fi
+else  
+  echo && echo 
+  echo "  boot-repair not yet installed.  Adding to LIVE DVD only..."
+  #attempt to install in case it is available through wasta-offline or cache
+  apt-get --quiet install --yes --quiet boot-repair
+
+  #if error installing through apt-get...
+  if [[ $?  !=  0 ]]; then
+    #attempt to install in case it is sitting in /var/cache/apt/archives
+    gdebi "/var/cache/apt/archives/boot-repair_*"
+  fi
+
+  #if error installing through gdebi...
+  if [[ $?  !=  0 ]]; then
+    read -p "Install boot-repair from the internet (Y/n)?  "  KEYPRESS
+  fi 
+  until [ -x /usr/bin/boot-repair ] || [ "${KEYPRESS^^}" == "N" ]; do
+    add-apt-repository --yes ppa:yannubuntu/boot-repair
+    apt-get update
+    apt-get --quiet install --yes boot-repair
+    sleep 2
+    add-apt-repository --remove --yes ppa:yannubuntu/boot-repair
+    read -p "Try again?   (Y/n)?  "  KEYPRESS
+  done
+
+  if [ -x /usr/bin/boot-repair ]; then
+    echo "adding code to remove boot-repair from Wasta install..." 
+    sed -i \
+        -e '\|^apt-get remove --yes boot-repair|d' \
+        -e '\|^#remove boot-repair begin|,\|^#remove boot-repair end|d' \
+        -e '\|#Place your custom commands above this line|i apt-get remove --yes boot-repair' \
+        -e '\|# cleanup the install icons|i #remove boot-repair begin - added only for liveDVD\napt-get --quiet remove --yes --quiet boot-repair\n#remove boot-repair end\n\n'   \
+      /usr/bin/remastersys
+
+    if [ -e /etc/init.d/remastersys-firstboot ]; then
+      sed -i \
+          -e '\|^apt-get remove --yes boot-repair|d' \
+          -e '\|#Place your custom commands above this line|i apt-get remove --yes boot-repair' \
+        /etc/init.d/remastersys-firstboot
+    fi
+  fi
+fi
+
+# ------------------------------------------------------------------------------
+# confirm grub prompt will NOT show on startup
+#   (this prompt will show for all systems if the source system had multiple
+#   os's installed on it)
+#
+# 2014-01-28 rik: this is deprecated in newer grub versions: need to explore
+#   GRUB_TIMEOUT_STYLE=hidden instead?
+# ------------------------------------------------------------------------------
+sed -i -e 's@#\(GRUB_HIDDEN_TIMEOUT=\)@\1@' /etc/default/grub
+
+# ------------------------------------------------------------------------------
+# Finished
+# ------------------------------------------------------------------------------
+
+printf "\n\n\n\n\n\n"
+echo "========================================================================="
+echo "=== Script Finished ====================================================="
+echo "========================================================================="
+
+exit 0

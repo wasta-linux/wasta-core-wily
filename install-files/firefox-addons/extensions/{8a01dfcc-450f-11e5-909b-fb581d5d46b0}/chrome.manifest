@@ -1,0 +1,4 @@
+skin    browser         arc-darker-theme   chrome/browser/
+skin    communicator    arc-darker-theme   chrome/communicator/
+skin    global          arc-darker-theme   chrome/global/
+skin    mozapps         arc-darker-theme   chrome/mozapps/
