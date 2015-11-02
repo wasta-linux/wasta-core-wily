@@ -268,6 +268,7 @@ echo
 # ubiquity-slideshow-ubuntu-gnome: needed for remastersys
 # ubuntu-restricted-extras: mp3, flash, etc.
 # vim: terminal utility - vi "improved"
+# vlc
 # w32codecs: several proprietary Windows audio and video codecs
 #   *** now not available since medibuntu repositories offline ??? ***
 # wasta-backup: GUI for rdiff-backup
@@ -343,6 +344,7 @@ apt-get $YES install \
     ubiquity-slideshow-ubuntu-gnome \
     ubuntu-restricted-extras \
     vim \
+    vlc \
     wasta-backup \
     wasta-menus \
     wasta-offline \
