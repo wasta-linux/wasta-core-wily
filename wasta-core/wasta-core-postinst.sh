@@ -8,6 +8,8 @@
 #       only intended to be run at package installation.
 #
 #   2015-10-09 rik: initial script for wasta-core-wily
+#   2015-11-03 rik: correcting sed on 25adduser to change uid to 990
+#       - adding wasta-text plymouth theme and settings as text.plymouth
 #
 # ==============================================================================
 
@@ -247,17 +249,43 @@ then
     echo
     # add wasta-logo to default.plymouth theme list
     update-alternatives --install /lib/plymouth/themes/default.plymouth default.plymouth \
-/lib/plymouth/themes/wasta-logo/wasta-logo.plymouth 100
+        /lib/plymouth/themes/wasta-logo/wasta-logo.plymouth 100
 
     # set wasta-logo as default.plymouth
     update-alternatives --set default.plymouth \
-/lib/plymouth/themes/wasta-logo/wasta-logo.plymouth
+        /lib/plymouth/themes/wasta-logo/wasta-logo.plymouth
 
     # update
     update-initramfs -u
 else
     echo
     echo "*** Plymouth Theme already set to wasta-logo.  No update needed."
+    echo
+fi
+
+# FYI: text.plymouth doesn't seem to work if ModuleName isn't "ubuntu-text"
+WASTA_PLY_TEXT=$(cat /etc/alternatives/text.plymouth | \
+    grep itle=Wasta-Linux || true;)
+# if variable is still "", then need to set text.plymouth
+if [ -z "$WASTA_PLY_TEXT" ];
+then
+    echo
+    echo "*** Setting Plymouth TEXT Theme to wasta-text"
+    echo
+
+    # add wasta-text to text.plymouth theme list
+    update-alternatives --install /lib/plymouth/themes/text.plymouth text.plymouth \
+        /lib/plymouth/themes/wasta-text/wasta-text.plymouth 100
+
+    # set wasta-text as text.plymouth
+    update-alternatives --set text.plymouth \
+        /lib/plymouth/themes/wasta-text/wasta-text.plymouth
+
+    # update
+    update-initramfs -u
+else
+    echo
+    echo "*** Plymouth TEXT Theme already set to wasta-logo.  No update needed."
     echo
 fi
 
@@ -347,7 +375,7 @@ sed -i -e '$a pref("general.skins.selectedSkin", "arc-darker-theme");' \
 
 # live session userid coded to 999, but this conflicts with vbox user ids
 # change to 990
-sed -i -e 's@user-uid*@user-uid 990@' \
+sed -i -e 's@user-uid [0-9]*@user-uid 990@' \
     /usr/share/initramfs-tools/scripts/casper-bottom/25adduser
 
 # ------------------------------------------------------------------------------

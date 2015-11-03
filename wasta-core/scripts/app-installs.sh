@@ -245,6 +245,7 @@ echo
 # imagemagick: terminal utilty for image resizing, etc. (needed for nemo
 #   image resize action)
 # iperf: terminal utility for network bandwidth measuring
+# keepassx: password manager
 # klavaro: typing tutor
 # libreoffice-base
 # libreoffice-sdbc-hsqldb: db backend for LO base
@@ -267,7 +268,6 @@ echo
 # ttf-mscorefonts-installer: installs standard Microsoft fonts
 # ubiquity-slideshow-ubuntu-gnome: needed for remastersys
 # ubuntu-restricted-extras: mp3, flash, etc.
-# vim: terminal utility - vi "improved"
 # vlc
 # w32codecs: several proprietary Windows audio and video codecs
 #   *** now not available since medibuntu repositories offline ??? ***
@@ -322,6 +322,7 @@ apt-get $YES install \
     hardinfo \
     imagemagick \
     iperf \
+    keepassx \
     klavaro \
     libreoffice-base \
     libreoffice-sdbc-hsqldb \
@@ -343,7 +344,6 @@ apt-get $YES install \
     ttf-mscorefonts-installer \
     ubiquity-slideshow-ubuntu-gnome \
     ubuntu-restricted-extras \
-    vim \
     vlc \
     wasta-backup \
     wasta-menus \
@@ -375,6 +375,18 @@ apt-get $YES install \
             echo
         fi
     fi
+
+# ------------------------------------------------------------------------------
+# Language Support Files: install
+# -----------------------------------------------------------------------------
+echo
+echo "*** Installing Language Support Files"
+echo
+
+SYSTEM_LANG=$(locale | grep LANG= | cut -d= -f2 | cut -d_ -f1)
+INSTALL_APPS=$(check-language-support -l $SYSTEM_LANG)
+
+apt-get $AUTO install $INSTALL_APPS
 
 # ------------------------------------------------------------------------------
 # 32-bit installs if needed for 64 bit machines
