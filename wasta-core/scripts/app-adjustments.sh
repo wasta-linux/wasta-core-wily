@@ -245,6 +245,11 @@ if [ -e /usr/share/applications/gnome-search-tool.desktop ];
 then
     desktop-file-edit --set-comment="Find or Locate documents and folders on this computer by name or content" \
         /usr/share/applications/gnome-search-tool.desktop
+
+    # default icon of "system-search" seems overridden by low-res icon, change
+    # to catfish instead
+    desktop-file-edit --set-icon=catfish \
+        /usr/share/applications/gnome-search-tool.desktop
 fi
 
 # ------------------------------------------------------------------------------
@@ -344,6 +349,13 @@ if [ -e /usr/share/applications/PinguyBuilder-gtk.desktop ];
 then
     desktop-file-edit --set-key=NoDisplay --set-value=true \
         /usr/share/applications/PinguyBuilder-gtk.desktop
+fi
+
+# set splash screen to Wasta-Linux default
+if [ -e /usr/bin/PinguyBuilder ];
+then
+    cp /lib/plymouth/themes/wasta-logo/wasta-linux-vga.png \
+        /etc/PinguyBuilder/isolinux/splash.png
 fi
 
 # ------------------------------------------------------------------------------

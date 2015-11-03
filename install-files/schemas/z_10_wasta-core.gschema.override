@@ -14,7 +14,7 @@
 # ==============================================================================
 
 [com.canonical.unity-greeter]
-background = '/usr/share/wasta-core/resources/wasta-background.png'
+background = '/usr/share/backgrounds/Tramonto_a_Scalea_by_Renatvs88.jpg'
 background-color = '#30343A'
 background-logo = '/usr/share/wasta-core/resources/wasta-linux.png'
 draw-grid = true
@@ -69,7 +69,7 @@ critical-battery-action = 'shutdown'
 sleep-inactive-battery-timeout = 1800
 
 [org.gnome.shell]
-enabled-extensions = ['user-theme@gnome-shell-extensions.gcampax.github.com', 'GPaste@gnome-shell-extensions.gnome.org', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'dash-to-dock@micxgx.gmail.com', 'gnomenu@panacier.gmail.com', 'suspend-button@laserb', 'caffeine@patapon.info', 'windowoverlay-icons@sustmidown.centrum.cz', 'topIcons@adel.gadllah@gmail.com', 'alternate-tab@gnome-shell-extensions.gcampax.github.com', 'Applications_Overview_Tooltip_NG@Karlitos']
+enabled-extensions = ['alternate-tab@gnome-shell-extensions.gcampax.github.com', 'Applications_Overview_Tooltip_NG@Karlitos', 'caffeine@patapon.info', 'dash-to-dock@micxgx.gmail.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'focus-my-window@varianto25.com', 'gnomenu@panacier.gmail.com', 'GPaste@gnome-shell-extensions.gnome.org', 'suspend-button@laserb', 'topIcons@adel.gadllah@gmail.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'windowoverlay-icons@sustmidown.centrum.cz']
 favorite-apps = ['firefox.desktop', 'thunderbird.desktop', 'org.gnome.Nautilus.desktop', 'libreoffice-writer.desktop', 'vlc.desktop']
 
 #[org.gnome.shell.extensions.battery_status]
