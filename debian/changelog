@@ -1,3 +1,10 @@
+wasta-core-wily (15.10.0.7) wily; urgency=medium
+
+  * dash-to-dock: schema to NOT scroll on hover of dock
+    scroll-switch-workspace = false
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Wed, 04 Nov 2015 19:38:04 +0300
+
 wasta-core-wily (15.10.0.6) wily; urgency=medium
 
   * install-files/extensions: adding 'no topleft hotcorner' (gnomenu not
