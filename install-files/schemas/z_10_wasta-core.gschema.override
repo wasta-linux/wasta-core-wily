@@ -69,7 +69,7 @@ critical-battery-action = 'shutdown'
 sleep-inactive-battery-timeout = 1800
 
 [org.gnome.shell]
-enabled-extensions = ['alternate-tab@gnome-shell-extensions.gcampax.github.com', 'Applications_Overview_Tooltip_NG@Karlitos', 'caffeine@patapon.info', 'dash-to-dock@micxgx.gmail.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'focus-my-window@varianto25.com', 'gnomenu@panacier.gmail.com', 'GPaste@gnome-shell-extensions.gnome.org', 'suspend-button@laserb', 'topIcons@adel.gadllah@gmail.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'windowoverlay-icons@sustmidown.centrum.cz']
+enabled-extensions = ['alternate-tab@gnome-shell-extensions.gcampax.github.com', 'Applications_Overview_Tooltip_NG@Karlitos', 'caffeine@patapon.info', 'dash-to-dock@micxgx.gmail.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'focus-my-window@varianto25.com', 'gnomenu@panacier.gmail.com', 'GPaste@gnome-shell-extensions.gnome.org', 'nohotcorner@azuri.free.fr', 'suspend-button@laserb', 'topIcons@adel.gadllah@gmail.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'windowoverlay-icons@sustmidown.centrum.cz']
 favorite-apps = ['firefox.desktop', 'thunderbird.desktop', 'org.gnome.Nautilus.desktop', 'libreoffice-writer.desktop', 'vlc.desktop']
 
 #[org.gnome.shell.extensions.battery_status]
