@@ -13,6 +13,7 @@
 #   2015-01-22 rik: adding mdm: now use lightdm
 #   2015-07-27 rik: adding lightdm: now use mdm :-)
 #   2015-10-25 rik: refactoring for Ubuntu 15.10 base
+#   2015-11-04 rik: removing overlay-scrollbar* (15.10 still used for gtk2)
 #
 # ==============================================================================
 
@@ -66,6 +67,7 @@ echo
 # gdm: gnome display manager (we use lightdm)
 # gnome-orca: screen reader
 # landscape-client-ui-install: pay service only for big corporations
+# overlay-scrollbar*: these are garbage (15.10 still used for gtk2)
 # totem: not needed as vlc handles all video/audio
 # transmission: normal users doing torrents probably isn't preferred
 # ttf-* fonts: non-english font families
@@ -86,6 +88,7 @@ apt-get $YES purge \
     gdm \
     gnome-orca \
     landscape-client-ui-install \
+    overlay-scrollbar* \
     totem \
         totem-common \
         totem-plugins \

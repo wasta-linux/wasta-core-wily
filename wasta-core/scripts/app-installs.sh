@@ -42,6 +42,7 @@
 #   2015-08-15 rik: removing casper, ubiquity-casper hold (solved casper
 #       issues.
 #   2015-10-25 rik: refactoring for Ubuntu 15.10
+#   2015-11-04 rik: adding mkusb-nox (usb-creator-gtk issue with 15.10)
 #
 # ==============================================================================
 
@@ -252,6 +253,7 @@ echo
 # libreoffice-style-tango: color icon set (more usable than 14.04 "human")
 # libtext-pdf-perl: provides pdfbklt (make A5 booklet from pdf)
 # linux-firmware-nonfree: additional proprietary drivers
+# mkusb-nox: teminal usb creator (15.10 issue with usb-creator-gtk)
 # modem-manager-gui: Check balance, top up, check signal strength, etc.
 # myspell-en-gb: spell checker for English (UK): needed for Libre Office
 # nautilus-image-converter: resize or rotate pictures
@@ -329,6 +331,7 @@ apt-get $YES install \
     libreoffice-style-tango \
     libtext-pdf-perl \
     linux-firmware-nonfree \
+    mkusb-nox \
     modem-manager-gui \
     myspell-en-gb \
     nautilus-image-converter \
@@ -386,7 +389,7 @@ echo
 SYSTEM_LANG=$(locale | grep LANG= | cut -d= -f2 | cut -d_ -f1)
 INSTALL_APPS=$(check-language-support -l $SYSTEM_LANG)
 
-apt-get $AUTO install $INSTALL_APPS
+apt-get $YES install $INSTALL_APPS
 
 # ------------------------------------------------------------------------------
 # 32-bit installs if needed for 64 bit machines
