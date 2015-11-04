@@ -83,12 +83,12 @@ then
 fi
 
 # ensure all ubuntu repositories enabled (will ensure not commented out)
-sed -i -e 's@.*\(deb.*ubuntu.com/ubuntu.* wily .*\)@\1@' $APT_SOURCES
-sed -i -e 's@.*\(deb.*ubuntu.com/ubuntu.* wily-updates .*\)@\1@' $APT_SOURCES
-sed -i -e 's@.*\(deb.*ubuntu.com/ubuntu.* wily-security .*\)@\1@' $APT_SOURCES
+sed -i -e 's@.*\(deb.*ubuntu.com/ubuntu.* wily \)@\1@' $APT_SOURCES
+sed -i -e 's@.*\(deb.*ubuntu.com/ubuntu.* wily-updates \)@\1@' $APT_SOURCES
+sed -i -e 's@.*\(deb.*ubuntu.com/ubuntu.* wily-security \)@\1@' $APT_SOURCES
 
 # canonical.com lists include "partner" for things like skype, etc.
-sed -i -e 's@.*\(deb.*canonical.com/ubuntu.* wily .*\)@\1@' $APT_SOURCES
+sed -i -e 's@.*\(deb.*canonical.com/ubuntu.* wily \)@\1@' $APT_SOURCES
 
 # add SIL repository
 sed -i -e '$a deb http://packages.sil.org/ubuntu wily main' \
@@ -230,7 +230,6 @@ then
     # set gnome logo to wasta-linux icon
     cp $DIR/resources/wl-round-22.png \
         /usr/share/unity-greeter/gnome_badge.png
-
 fi
 
 # ------------------------------------------------------------------------------
@@ -257,6 +256,9 @@ then
 
     # update
     update-initramfs -u
+    
+    # update grub (to get rid of purple grub boot screen)
+    update-grub
 else
     echo
     echo "*** Plymouth Theme already set to wasta-logo.  No update needed."

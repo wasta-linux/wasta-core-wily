@@ -144,66 +144,64 @@ fi
 #   having gnomenu look at "Keywords" would be better
 if [ -e /usr/share/applications/gnome-control-center.desktop ];
 then
-    desktop-file-edit --set-comment="Control Center
-
-
-
-
-
-applications
-backgrounds
-battery
-brightness
-bluetooth
-colors
-configuration
-date
-default
-desktops
-details
-displays
-effects
-ethernet
-extensions
-fonts
-general
-hotcorners
-ibus
-info
-input
-keyboards
-kmfl
-languages
-locales
-menus
-mouse
-networks
-notifications
-panels
-preferences
-preferred
-printers
-privacy
-power
-regions
-screensavers
-settings
-sound
-system
-themes
-time
-touchpad
-trackpad
-users
-universal access
-volume
-wacom
-wifi
-wireless
-windows
-workspaces" \
+    desktop-file-edit --set-comment="System Settings Control Center" \
         /usr/share/applications/gnome-control-center.desktop
 fi
+
+# Would be good to add following keywords for gnomenu, but currently it doesn't look at keywords, and if I add these to the comment it stretches the menu to fill the whole screen
+
+#applications
+#backgrounds
+#battery
+#brightness
+#bluetooth
+#colors
+#configuration
+#date
+#default
+#desktops
+#details
+#displays
+#effects
+#ethernet
+#extensions
+#fonts
+#general
+#hotcorners
+#ibus
+#info
+#input
+#keyboards
+#kmfl
+#languages
+#locales
+#menus
+#mouse
+#networks
+#notifications
+#panels
+#preferences
+#preferred
+#printers
+#privacy
+#power
+#regions
+#screensavers
+#settings
+#sound
+#system
+#themes
+#time
+#touchpad
+#trackpad
+#users
+#universal access
+#volume
+#wacom
+#wifi
+#wireless
+#windows
+#workspaces
 
 # ------------------------------------------------------------------------------
 # gnome-font-viewer
@@ -405,6 +403,13 @@ fi
 echo
 echo "*** Adjusting default applications"
 echo
+
+# preferred way to set defaults is with xdg-mime
+xdg-mime default org.gnome.gedit.desktop text/plain
+xdg-mime default org.gnome.font-viewer.desktop application/x-font-ttf
+
+# can't sort out how to make vlc default for ALL audio and video types, so
+#   have to resort to sed
 if ! [ -e /etc/gnome/defaults.list.save ];
 then
     cp /etc/gnome/defaults.list /etc/gnome/defaults.list.save
@@ -414,15 +419,6 @@ sed -i -e 's@\(audio.*\)=.*@\1=vlc.desktop@' \
     /etc/gnome/defaults.list
 sed -i -e 's@\(video.*\)=.*@\1=vlc.desktop@' \
     /etc/gnome/defaults.list
-
-# ???Needed 15.10 / 16.04
-# set gnome-font-viewer as default app when double-clicking font file
-#   font-manager good but seems a bug doesn't allow it to open with a specific
-#   font file for easy installation
-sed -i -e '$a application/x-font-ttf=org.gnome.font-viewer.desktop' \
-    -i -e '\@application/x-font-ttf=org.gnome.font-viewer.desktop@d' \
-    /etc/gnome/defaults.list
-
 
 if ! [ -e /usr/share/applications/defaults.list.save ];
 then
@@ -434,14 +430,6 @@ sed -i -e 's@\(audio.*\)=.*@\1=vlc.desktop@' \
 sed -i -e 's@\(video.*\)=.*@\1=vlc.desktop@' \
     /usr/share/applications/defaults.list
 
-# set gnome-font-viewer as default app when double-clicking font file
-#   font-manager good but seems a bug doesn't allow it to open with a specific
-#   font file for easy installation
-sed -i -e '$a application/x-font-ttf=org.gnome.font-viewer.desktop' \
-    -i -e '\@application/x-font-ttf=org.gnome.font-viewer.desktop@d' \
-    /usr/share/applications/defaults.list
-
-
 if [ -e /usr/share/gnome/applications/defaults.list ];
 then
     if ! [ -e /usr/share/gnome/applications/defaults.list.save ];
@@ -449,18 +437,6 @@ then
         cp /usr/share/gnome/applications/defaults.list \
             /usr/share/gnome/applications/defaults.list.save
     fi
-
-    sed -i -e 's@\(audio.*\)=.*@\1=vlc.desktop@' \
-        /usr/share/gnome/applications/defaults.list
-    sed -i -e 's@\(video.*\)=.*@\1=vlc.desktop@' \
-        /usr/share/gnome/applications/defaults.list
-
-    # set gnome-font-viewer as default app when double-clicking font file
-    #   font-manager good but seems a bug doesn't allow it to open with a specific
-    #   font file for easy installation
-    sed -i -e '$a application/x-font-ttf=org.gnome.font-viewer.desktop' \
-        -i -e '\@application/x-font-ttf=org.gnome.font-viewer.desktop@d' \
-        /usr/share/gnome/applications/defaults.list
 fi
 
 # ------------------------------------------------------------------------------

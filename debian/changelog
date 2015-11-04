@@ -1,3 +1,15 @@
+wasta-core-wily (15.10.0.5) wily; urgency=medium
+
+  * app-installs.sh: adding mkusb-nox to give terminal option to create usb
+  * app-removals.sh: removing overlay-scrollbar*
+  * app-adjustments.sh: setting gedit as default for text/plain
+    - removing additional comment keyterms from gnome-control-center (gnomenu
+      spills over full screen with them: need instead keyterms but not
+      supported yet by gnomenu)
+  * lightdm.conf.d: removing manual login (customizers can add if needed)
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Wed, 04 Nov 2015 18:58:12 +0300
+
 wasta-core-wily (15.10.0.4) wily; urgency=medium
 
   * postinst: corrected 25adduser sed for casper files
