@@ -43,6 +43,7 @@
 #       issues.
 #   2015-10-25 rik: refactoring for Ubuntu 15.10
 #   2015-11-04 rik: adding mkusb-nox (usb-creator-gtk issue with 15.10)
+#   2015-11-05 rik: adding tracker (gnome-shell file search / index tool)
 #
 # ==============================================================================
 
@@ -267,6 +268,7 @@ echo
 # soundconverter: convert audio formats
 # ssh: remote access
 # traceroute: terminal utility
+# tracker, gir1.2-tracker-1.0: gnome-shell search tool
 # ttf-mscorefonts-installer: installs standard Microsoft fonts
 # ubiquity-slideshow-ubuntu-gnome: needed for remastersys
 # ubuntu-restricted-extras: mp3, flash, etc.
@@ -344,6 +346,7 @@ apt-get $YES install \
     ssh \
     synaptic \
     traceroute \
+    tracker gir1.2-tracker-1.0 \
     ttf-mscorefonts-installer \
     ubiquity-slideshow-ubuntu-gnome \
     ubuntu-restricted-extras \
