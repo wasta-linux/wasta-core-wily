@@ -52,7 +52,11 @@ lock-enabled = false
 picture-uri = 'file:///usr/share/backgrounds/Tramonto_a_Scalea_by_Renatvs88.jpg'
 ubuntu-lock-on-suspend = false
 
+[org.gnome.desktop.search-providers]
+disabled = ['org.gnome.clocks.desktop']
+
 [org.gnome.desktop.wm.preferences]
+auto-raise = true
 button-layout = ':minimize,maximize,close'
 theme = 'Arc-Darker'
 titlebar-font = 'Ubuntu Bold 11'
@@ -115,3 +119,6 @@ icon-size = 48
 
 [org.gnome.shell.extensions.user-theme]
 name = 'Arc-Dark'
+
+[org.gnome.shell.overrides]
+attach-modal-dialogs = false

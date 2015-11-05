@@ -1,3 +1,13 @@
+wasta-core-wily (15.10.0.8) trusty; urgency=medium
+
+  * schemas: disabling clocks in search results
+    - focus window immediately
+  * app-installs.sh: adding tracker (default in ubuntu gnome) so can set
+    folder search settings (however, can't seem to return results in
+    gnome-shell outside $HOME, testing an extra extension to see if it works)
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Thu, 05 Nov 2015 10:14:35 +0300
+
 wasta-core-wily (15.10.0.7) wily; urgency=medium
 
   * dash-to-dock: schema to NOT scroll on hover of dock
