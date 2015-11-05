@@ -11,6 +11,7 @@
 #
 #   2015-10-24 rik: refactoring for Gnome-Shell Ubuntu 15.10
 #   2015-11-05 rik: disabling tracker file CONTENT indexing
+#       - keyboard shortcuts (show desktop, show home, lock screen, help)
 #
 # ==============================================================================
 
@@ -28,7 +29,7 @@ play-ready-sound = false
 use-system-keyboard-layout = false
 use-global-engine = false
 
-[org.freedesktop.tracker.fts]
+[org.freedesktop.Tracker.FTS]
 max-words-to-index = 0
 
 [org.gnome.desktop.background]
@@ -59,6 +60,9 @@ ubuntu-lock-on-suspend = false
 [org.gnome.desktop.search-providers]
 disabled = ['org.gnome.clocks.desktop']
 
+[org.gnome.desktop.wm.keybindings]
+show-desktop = ['<Primary><Super>d', '<Primary><Alt>d', '<Super>d']
+
 [org.gnome.desktop.wm.preferences]
 auto-raise = true
 button-layout = ':minimize,maximize,close'
@@ -70,7 +74,9 @@ scroll-method = 'disabled'
 tap-to-click = false
 
 [org.gnome.settings-daemon.plugins.media-keys]
-home = '<Primary><Alt>e'
+help = 'F1'
+home = '<Super>e'
+screensaver = '<Super>l'
 
 [org.gnome.settings-daemon.plugins.power]
 critical-battery-action = 'shutdown'
