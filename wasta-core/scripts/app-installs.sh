@@ -44,7 +44,8 @@
 #   2015-10-25 rik: refactoring for Ubuntu 15.10
 #   2015-11-04 rik: adding mkusb-nox (usb-creator-gtk issue with 15.10)
 #   2015-11-05 rik: adding tracker (gnome-shell file search / index tool)
-#       adding hddtemp
+#       - adding hddtemp
+#       - adding gnome-sushi, unoconv (needed for sushi to show lo docs)
 #
 # ==============================================================================
 
@@ -240,6 +241,7 @@ echo
 # gnome-font-viewer: better than "font-manager" for just viewing a font file.
 # gnome-nettool: network tool GUI (traceroute, lookup, etc)
 # gnome-search-tool: more in-depth search than nemo gives
+# gnome-sushi unoconv: file preview (hit spacebar) unoconv needed for lo docs 
 # gparted: partition manager
 # grsync: GUI rsync tool
 # gufw: GUI for "uncomplicated firewall"
@@ -322,6 +324,7 @@ apt-get $YES install \
     gnome-font-viewer \
     gnome-nettool \
     gnome-search-tool \
+    gnome-sushi unoconv \
     gparted \
     grsync \
     gufw \

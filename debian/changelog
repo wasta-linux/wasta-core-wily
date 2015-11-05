@@ -1,3 +1,11 @@
+wasta-core-wily (15.10.0.11) wily; urgency=medium
+
+  * app-adjustments.sh: adding chromium-app-list launcher if chromium exists
+  * schemas: adding keyboard shortcuts (desktop, help, home, lock screen)
+  * app-installs.sh: adding gnome-sushi file preview and unoconv (for lo files)
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Thu, 05 Nov 2015 19:23:23 +0300
+
 wasta-core-wily (15.10.0.10) wily; urgency=medium
 
   * wasta-reset: adding dconf reset for org.gnome.shell, since gsettings reset

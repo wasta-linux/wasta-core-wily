@@ -104,6 +104,18 @@ then
 fi
 
 # ------------------------------------------------------------------------------
+# chromium-browser
+# ------------------------------------------------------------------------------
+if [ -e /usr/bin/chromium-browser ];
+then
+    if ! [ -e /usr/share/applications/chromium-app-list.desktop ];
+    then
+        # add app launcher if not found
+        cp $DIR/resources/chromium-app-list.desktop /usr/share/applications
+    fi
+fi
+
+# ------------------------------------------------------------------------------
 # evince (pdf viewer)
 # ------------------------------------------------------------------------------
 if [ -e /usr/share/applications/evince.desktop ];
