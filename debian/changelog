@@ -1,3 +1,11 @@
+wasta-core-wily (15.10.0.9) wily; urgency=medium
+
+  * wasta-reset: org.gnome.desktop and org.gnome.settings-daemon are not
+    defined schemas, so changed to reset with "dconf reset" command.
+  * schemas: disabling tracker CONTENT indexing (will just index filenames)
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Thu, 05 Nov 2015 14:33:42 +0300
+
 wasta-core-wily (15.10.0.8) trusty; urgency=medium
 
   * schemas: disabling clocks in search results

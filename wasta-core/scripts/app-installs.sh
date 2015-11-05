@@ -44,6 +44,7 @@
 #   2015-10-25 rik: refactoring for Ubuntu 15.10
 #   2015-11-04 rik: adding mkusb-nox (usb-creator-gtk issue with 15.10)
 #   2015-11-05 rik: adding tracker (gnome-shell file search / index tool)
+#       adding hddtemp
 #
 # ==============================================================================
 
@@ -243,6 +244,7 @@ echo
 # grsync: GUI rsync tool
 # gufw: GUI for "uncomplicated firewall"
 # hardinfo: system profiler
+# hddtemp: harddrive temp checker
 # ibus-kmfl: keyboard mapping for linux (Keyman port)
 # imagemagick: terminal utilty for image resizing, etc. (needed for nemo
 #   image resize action)
@@ -324,6 +326,7 @@ apt-get $YES install \
     grsync \
     gufw \
     hardinfo \
+    hddtemp \
     imagemagick \
     iperf \
     keepassx \
