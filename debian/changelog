@@ -1,3 +1,10 @@
+wasta-core-wily (15.10.0.10) wily; urgency=medium
+
+  * wasta-reset: adding dconf reset for org.gnome.shell, since gsettings reset
+    doesn't reset org.gnome.shell.extensions.*
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Thu, 05 Nov 2015 15:49:40 +0300
+
 wasta-core-wily (15.10.0.9) wily; urgency=medium
 
   * wasta-reset: org.gnome.desktop and org.gnome.settings-daemon are not
