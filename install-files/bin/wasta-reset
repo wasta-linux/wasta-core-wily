@@ -33,6 +33,8 @@
 #       - Refactoring dialogs to use zenity
 #   2015-11-05 rik: org.gnome.desktop and org.gnome.settings-daemon are not
 #       defined schemas, so changed to reset with "dconf reset" command.
+#       - adding dconf reset process for org.gnome.shell or else doesn't reset
+#         sub directories such as org.gnome.shell.extensions *
 #
 # ==============================================================================
 
@@ -104,7 +106,10 @@ then
     # schema not defined: gsettings reset-recursively org.gnome.settings-daemon
     dconf reset -f /org/gnome/settings-daemon/
 
-    gsettings reset-recursively org.gnome.shell
+    # not resetting org.gnome.shell.extensions.*:
+    #   gsettings reset-recursively org.gnome.shell
+    dconf reset -f /org/gnome/shell/
+
     gsettings reset-recursively org.gnome.nautilus
 
     # --------------------------------------------------------------------------
