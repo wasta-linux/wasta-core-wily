@@ -10,6 +10,7 @@
 #       glib-compile-schemas /usr/share/glib-2.0/schemas/
 #
 #   2015-10-24 rik: refactoring for Gnome-Shell Ubuntu 15.10
+#   2015-11-05 rik: disabling tracker file CONTENT indexing
 #
 # ==============================================================================
 
@@ -26,6 +27,9 @@ play-ready-sound = false
 [org.freedesktop.ibus.general]
 use-system-keyboard-layout = false
 use-global-engine = false
+
+[org.freedesktop.tracker.fts]
+max-words-to-index = 0
 
 [org.gnome.desktop.background]
 picture-uri = 'file:///usr/share/backgrounds/Tramonto_a_Scalea_by_Renatvs88.jpg'
@@ -89,7 +93,6 @@ dock-fixed = true
 extend-height = true
 scroll-switch-workspace = false
 show-apps-at-top = false
-
 
 [org.gnome.shell.extensions.gnomenu]
 apps-list-icon-size = 24

@@ -31,6 +31,8 @@
 #       are now stored in a .js file for the applet)
 #   2015-10-28 rik: adding Gnome-Shell reset processing
 #       - Refactoring dialogs to use zenity
+#   2015-11-05 rik: org.gnome.desktop and org.gnome.settings-daemon are not
+#       defined schemas, so changed to reset with "dconf reset" command.
 #
 # ==============================================================================
 
@@ -94,10 +96,14 @@ then
     SAVE_BACKGROUND=$(gsettings get org.gnome.desktop.background picture-uri)
 
     # --------------------------------------------------------------------------
-    # Reset all GNOME and Nautilus settings to defaults
+    # Remove all custom dconf settings to defaults
     # --------------------------------------------------------------------------
-    gsettings reset-recursively org.gnome.desktop
-    gsettings reset-recursively org.gnome.settings-daemon
+    # schema not defined: gsettings reset-recursively org.gnome.desktop
+    dconf reset -f /org/gnome/desktop/
+
+    # schema not defined: gsettings reset-recursively org.gnome.settings-daemon
+    dconf reset -f /org/gnome/settings-daemon/
+
     gsettings reset-recursively org.gnome.shell
     gsettings reset-recursively org.gnome.nautilus
 
