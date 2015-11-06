@@ -12,6 +12,8 @@
 #   2015-10-24 rik: refactoring for Gnome-Shell Ubuntu 15.10
 #   2015-11-05 rik: disabling tracker file CONTENT indexing
 #       - keyboard shortcuts (show desktop, show home, lock screen, help)
+#   2016-11-06 rik: nautilus: ask when opening executable file (rather than
+#       default of just display file not even asking to run it)
 #
 # ==============================================================================
 
@@ -68,6 +70,9 @@ auto-raise = true
 button-layout = ':minimize,maximize,close'
 theme = 'Arc-Darker'
 titlebar-font = 'Ubuntu Bold 11'
+
+[org.gnome.nautilus.preferences]
+executable-text-activation = 'ask'
 
 [org.gnome.settings-daemon.peripherals.touchpad]
 scroll-method = 'disabled'

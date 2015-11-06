@@ -1,3 +1,11 @@
+wasta-core-wily (15.10.0.12) wily; urgency=medium
+
+  * app-adjustments.sh: fix chromium-app-list icon
+    - change gcolor2 icon to 'gpick' so works with moka theme
+    - change gpaste icon to 'glippy' so works with moak theme
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Fri, 06 Nov 2015 07:52:09 +0300
+
 wasta-core-wily (15.10.0.11) wily; urgency=medium
 
   * app-adjustments.sh: adding chromium-app-list launcher if chromium exists

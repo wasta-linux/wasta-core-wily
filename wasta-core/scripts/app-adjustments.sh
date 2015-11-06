@@ -3,7 +3,10 @@
 # ==============================================================================
 # wasta-core: app-adjustments.sh
 #
-#   2015-10-25 rik: initial script - pulled from other scripts
+# 2015-10-25 rik: initial script - pulled from other scripts
+# 2015-11-06 rik: making gdebi default for deb files
+#   - chromium app launcher processing
+#   - gpaste, gcolor2 icon changes to use others available in Moka icon theme
 #
 # ==============================================================================
 
@@ -150,6 +153,16 @@ then
 fi
 
 # ------------------------------------------------------------------------------
+# gcolor2
+# ------------------------------------------------------------------------------
+if [ -e /usr/share/applications/gcolor2.desktop ];
+then
+    # change icon to gpick: gcolor2 not supported by moka, low quality
+    desktop-file-edit --set-icon=gpick \
+        /usr/share/applications/gcolor2.desktop
+fi
+
+# ------------------------------------------------------------------------------
 # gnome-control-center
 # ------------------------------------------------------------------------------
 # add items to "comments" so that found from gnomenu
@@ -263,6 +276,17 @@ then
 fi
 
 # ------------------------------------------------------------------------------
+# gpaste
+# ------------------------------------------------------------------------------
+if [ -e /usr/share/applications/org.gnome.GPaste.Settings.desktop ];
+then
+   # default icon of "gtk-paste" no found in Moka, uses low-res indicator icon
+   #    change to glippy instead
+    desktop-file-edit --set-icon=glippy \
+        /usr/share/applications/org.gnome.GPaste.Settings.desktop
+fi
+
+# ------------------------------------------------------------------------------
 # image-magick
 # ------------------------------------------------------------------------------
 # we want command-line only
@@ -334,12 +358,15 @@ then
 fi
 
 # ------------------------------------------------------------------------------
-# OpenJDK Policy Tool: hide GUI from start menu
+# OpenJDK Policy Tool
 # ------------------------------------------------------------------------------
 if [ -e /usr/share/applications/openjdk-7-policytool.desktop ];
 then
+    # Hide GUI from start menu
+    # Send output to /dev/null since there are warnings generated
+    #   by the comment fields
     desktop-file-edit --set-key=NoDisplay --set-value=true \
-        /usr/share/applications/openjdk-7-policytool.desktop
+        /usr/share/applications/openjdk-7-policytool.desktop >/dev/null
 fi
 
 # ------------------------------------------------------------------------------
@@ -416,7 +443,14 @@ echo
 echo "*** Adjusting default applications"
 echo
 
-# preferred way to set defaults is with xdg-mime
+# preferred way to set defaults is with xdg-mime (but it was said that the
+#   default function shouldn't be used as root?  indeed gdebi yells, saying
+#
+#   touch: cannot touch ‘/root/.local/share/applications/mimeapps.list’: No such file or directory
+#   /usr/bin/xdg-mime: 799: /usr/bin/xdg-mime: cannot create /root/.local/share/applications/mimeapps.list.new: Directory nonexistent
+#
+#   but I think it is OK.
+xdg-mime default gdebi.desktop application/x-deb
 xdg-mime default org.gnome.gedit.desktop text/plain
 xdg-mime default org.gnome.font-viewer.desktop application/x-font-ttf
 
