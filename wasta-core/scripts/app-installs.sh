@@ -271,6 +271,7 @@ echo
 #   libpulse0:i386: needed for skype sound to work, not listed as dependency
 # soundconverter: convert audio formats
 # ssh: remote access
+# testdisk: photorec tool for recovery of deleted files
 # traceroute: terminal utility
 # tracker, gir1.2-tracker-1.0: gnome-shell search tool
 # ttf-mscorefonts-installer: installs standard Microsoft fonts
@@ -351,6 +352,7 @@ apt-get $YES install \
     soundconverter \
     ssh \
     synaptic \
+    testdisk \
     traceroute \
     tracker gir1.2-tracker-1.0 \
     ttf-mscorefonts-installer \

@@ -13,7 +13,10 @@
 #   2015-01-22 rik: adding mdm: now use lightdm
 #   2015-07-27 rik: adding lightdm: now use mdm :-)
 #   2015-10-25 rik: refactoring for Ubuntu 15.10 base
-#   2015-11-04 rik: removing overlay-scrollbar* (15.10 still used for gtk2)
+#   2015-11-04 rik: removing overlay-scrollbar* (15.10 still used for gtk2)\
+#   2015-11-08 rik: removing appmenu-qt5: this prevents vlc from showing
+#       in system tray.  See bug report:
+#       https://bugs.launchpad.net/ubuntu/+source/appmenu-qt5/+bug/1514147
 #
 # ==============================================================================
 
@@ -61,6 +64,8 @@ echo "*** Removing Unwanted Applications"
 echo
 
 # adobe-flash-properties-gtk: no need for flash setup tool
+# appmenu-qt5: this prevents vlc from showing in system tray
+#   https://bugs.launchpad.net/ubuntu/+source/appmenu-qt5/+bug/1514147
 # deja-dup: we use wasta-backup
 # empathy: chat client
 # fonts-*: non-english fonts
@@ -78,6 +83,7 @@ echo
 
 apt-get $YES purge \
     adobe-flash-properties-gtk \
+    appmenu-qt5 \
     deja-dup \
     empathy-common \
     fonts-*tlwg* \
