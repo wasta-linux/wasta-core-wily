@@ -1,3 +1,9 @@
+wasta-core-wily (15.10.0.13) wily; urgency=medium
+
+  * version bump (accidentally posted 15.10.0.12 twice)
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Sun, 08 Nov 2015 20:33:48 +0300
+
 wasta-core-wily (15.10.0.12) wily; urgency=medium
 
   * app-removals.sh: removing appmenu-qt5 (prevents vlc from showing in tray)
