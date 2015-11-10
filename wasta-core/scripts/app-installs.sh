@@ -46,6 +46,7 @@
 #   2015-11-05 rik: adding tracker (gnome-shell file search / index tool)
 #       - adding hddtemp
 #       - adding gnome-sushi, unoconv (needed for sushi to show lo docs)
+#   2015-11-10 rik: adding ubiquity (since needs tweaked in app-adjustments.sh)
 #
 # ==============================================================================
 
@@ -67,7 +68,7 @@ fi
 # ------------------------------------------------------------------------------
 
 echo
-echo " *** Script Entry: app-installs.sh"
+echo "*** Script Entry: app-installs.sh"
 echo
 # Setup Diretory for later reference
 DIR=/usr/share/wasta-core
@@ -160,7 +161,7 @@ apt-get update
         if [ "$AUTO" ];
         then
             echo
-            echo " *** ERROR: apt-get command failed. You may want to re-run!"
+            echo "*** ERROR: apt-get command failed. You may want to re-run!"
             echo
         else
             echo
@@ -193,7 +194,7 @@ apt-get $YES dist-upgrade
         if [ "$AUTO" ];
         then
             echo
-            echo " *** ERROR: apt-get command failed. You may want to re-run!"
+            echo "*** ERROR: apt-get command failed. You may want to re-run!"
             echo
         else
             echo
@@ -275,7 +276,7 @@ echo
 # traceroute: terminal utility
 # tracker, gir1.2-tracker-1.0: gnome-shell search tool
 # ttf-mscorefonts-installer: installs standard Microsoft fonts
-# ubiquity-slideshow-ubuntu-gnome: needed for remastersys
+# ubiquity: add here since needs tweaking (in app-adjustments.sh)
 # ubuntu-restricted-extras: mp3, flash, etc.
 # vlc
 # w32codecs: several proprietary Windows audio and video codecs
@@ -356,7 +357,7 @@ apt-get $YES install \
     traceroute \
     tracker gir1.2-tracker-1.0 \
     ttf-mscorefonts-installer \
-    ubiquity-slideshow-ubuntu-gnome \
+    ubiquity \
     ubuntu-restricted-extras \
     vlc \
     wasta-backup \
@@ -373,7 +374,7 @@ apt-get $YES install \
         if [ "$AUTO" ];
         then
             echo
-            echo " *** ERROR: apt-get command failed. You may want to re-run!"
+            echo "*** ERROR: apt-get command failed. You may want to re-run!"
             echo
         else
             echo
@@ -422,7 +423,7 @@ then
         if [ "$AUTO" ];
         then
             echo
-            echo " *** ERROR: apt-get command failed. You may want to re-run!"
+            echo "*** ERROR: apt-get command failed. You may want to re-run!"
             echo
         else
             echo
@@ -448,7 +449,7 @@ fi
 #apt-get autoclean
 
 echo
-echo " *** Script Exit: app-installs.sh"
+echo "*** Script Exit: app-installs.sh"
 echo
 
 exit 0

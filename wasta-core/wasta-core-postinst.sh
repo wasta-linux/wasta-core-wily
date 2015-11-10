@@ -90,22 +90,43 @@ sed -i -e 's@.*\(deb.*ubuntu.com/ubuntu.* wily-security \)@\1@' $APT_SOURCES
 # canonical.com lists include "partner" for things like skype, etc.
 sed -i -e 's@.*\(deb.*canonical.com/ubuntu.* wily \)@\1@' $APT_SOURCES
 
-# add SIL repository
-sed -i -e '$a deb http://packages.sil.org/ubuntu wily main' \
-    -i -e '\@deb http://packages.sil.org/ubuntu wily main@d' \
-    $APT_SOURCES
+# legacy cleanup: PSO should NOT be in sources.list anymore (ubiquity will
+#   remove when installing)
+sed -i -e '\@packages.sil.org@d' $APT_SOURCES
 
-# add (inactive) SIL experimental repository (if not found)
-#   done this way so that if a user had activated it, won't be deactiveated
-PSO_EXP_FOUND=$(grep 'deb http://packages.sil.org/ubuntu wily-experimental main' $APT_SOURCES)
+# add SIL repository to sources.list.d
+#   (otherwise ubiquity comments out when installing)
+if ! [ -e $APT_SOURCES_D/packages-sil-org-wily.list ];
+then
+    echo
+    echo "*** Adding SIL Repository"
+    echo
 
-if [ ! "$PSO_EXP_FOUND" ];
+    echo "deb http://packages.sil.org/ubuntu wily main" | \
+        tee $APT_SOURCES_D/packages-sil-org-wily.list
+    echo "# deb-src http://packages.sil.org/ubuntu wily main" | \
+        tee -a $APT_SOURCES_D/packages-sil-org-wily.list
+else
+    # found, but ensure PSO main ACTIVE (user could have accidentally disabled)
+    echo
+    echo "*** SIL Repository already exists, ensuring active"
+    echo
+    sed -i -e 's@.*\(deb http://packages.sil.org\)@\1@' \
+        $APT_SOURCES_D/packages-sil-org-wily.list
+fi
+
+# add SIL Experimental repository to sources.list.d
+#   (otherwise ubiquity comments out when installing)
+if ! [ -e $APT_SOURCES_D/packages-sil-org-wily-experimental.list ];
 then
     echo
     echo "*** Adding SIL Experimental Repository (inactive)"
     echo
-    sed -i -e '$a #deb http://packages.sil.org/ubuntu wily-experimental main' \
-        $APT_SOURCES
+
+    echo "# deb http://packages.sil.org/ubuntu wily-experimental main" | \
+        tee $APT_SOURCES_D/packages-sil-org-wily-experimental.list
+    echo "# deb-src http://packages.sil.org/ubuntu wily-experimental main" | \
+        tee -a $APT_SOURCES_D/packages-sil-org-wily-experimental.list
 fi
 
 # install repository Keys (done locally since wasta-offline could be active)
@@ -370,15 +391,6 @@ glib-compile-schemas /usr/share/glib-2.0/schemas/ > /dev/null 2>&1 || true;
 sed -i -e '$a pref("general.skins.selectedSkin", "arc-darker-theme");' \
     -i -e '\#general.skins.selectedSkin#d' \
     /etc/firefox/syspref.js
-
-# ------------------------------------------------------------------------------
-# Casper: "live session" fixes
-# ------------------------------------------------------------------------------
-
-# live session userid coded to 999, but this conflicts with vbox user ids
-# change to 990
-sed -i -e 's@user-uid [0-9]*@user-uid 990@' \
-    /usr/share/initramfs-tools/scripts/casper-bottom/25adduser
 
 # ------------------------------------------------------------------------------
 # Reduce "Swappiness"

@@ -1,3 +1,13 @@
+wasta-core-wily (15.10.0.14) wily; urgency=medium
+
+  * app-adjustments.sh: adding ubiquity fix to not re-create sources.list
+  * postinst: changing SIL repos to be added to sources.list.d folder
+    so they aren't removed by ubiquity during install
+    - moving casper tweaks to app-adjustments.sh
+  * app-installs.sh: adding ubiquity
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Tue, 10 Nov 2015 18:07:09 +0300
+
 wasta-core-wily (15.10.0.13) wily; urgency=medium
 
   * version bump (accidentally posted 15.10.0.12 twice)
