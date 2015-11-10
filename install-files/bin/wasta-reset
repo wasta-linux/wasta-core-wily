@@ -50,6 +50,10 @@ else
     AUTO=""
 fi
 
+# TODO: if ROOT, then run rest of script as logged in user 
+
+
+
 if ! [ "$AUTO" ];
 then
     # prompt user

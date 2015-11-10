@@ -38,7 +38,7 @@ fi
 # ------------------------------------------------------------------------------
 
 echo
-echo " *** Script Entry: app-removals.sh"
+echo "*** Script Entry: app-removals.sh"
 echo
 # Setup Diretory for later reference
 DIR=/usr/share/wasta-core

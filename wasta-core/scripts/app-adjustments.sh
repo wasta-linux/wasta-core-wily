@@ -7,6 +7,11 @@
 # 2015-11-06 rik: making gdebi default for deb files
 #   - chromium app launcher processing
 #   - gpaste, gcolor2 icon changes to use others available in Moka icon theme
+# 2015-11-10 rik: ubiquity apt-setup: commenting out replace of sources.list:
+#      we want to just go with what live-cd has, as often minor countries mirror
+#      not very good: instead stick to main repo, user can later change if they
+#      want.
+#   - casper: added fix here instead of in postinst   
 #
 # ==============================================================================
 
@@ -28,7 +33,7 @@ fi
 # ------------------------------------------------------------------------------
 
 echo
-echo " *** Script Entry: app-adjustments.sh"
+echo "*** Script Entry: app-adjustments.sh"
 echo
 
 # Setup Diretory for later reference
@@ -104,6 +109,17 @@ if [ -e /usr/share/applications/org.gnome.baobab.desktop ];
 then
     desktop-file-edit ---remove-category=X-GNOME-Utilities \
         /usr/share/applications/org.gnome.baobab.desktop
+fi
+
+# ------------------------------------------------------------------------------
+# casper: "live session" fixes
+# ------------------------------------------------------------------------------
+# live session userid coded to 999, but this conflicts with vbox user ids
+# change to 990
+if [ -e /usr/share/initramfs-tools/scripts/casper-bottom/25adduser ];
+then
+    sed -i -e 's@user-uid [0-9]*@user-uid 990@' \
+        /usr/share/initramfs-tools/scripts/casper-bottom/25adduser
 fi
 
 # ------------------------------------------------------------------------------
@@ -396,6 +412,19 @@ then
 fi
 
 # ------------------------------------------------------------------------------
+# ubiquity
+# ------------------------------------------------------------------------------
+# comment out creation of new /etc/apt/sources.list as we want to just use
+#   what the livecd already has for a sources.list: often minor countries
+#   mirrors are not adequate.  User can always change mirror later themselves,
+#   but we will default to using the MAIN ubuntu mirrors
+if [ -e /usr/lib/ubiquity/apt-setup/apt-setup ];
+then
+    sed -i -e 's@^.*\(mv $ROOT/etc/apt/sources.list.new $ROOT/etc/apt/sources.list\)@# \1@' \
+        /usr/lib/ubiquity/apt-setup/apt-setup
+fi
+
+# ------------------------------------------------------------------------------
 # unity-lens-photos
 # ------------------------------------------------------------------------------
 #unity-lens-photos: only show in unity
@@ -489,7 +518,7 @@ fi
 # Finished
 # ------------------------------------------------------------------------------
 echo
-echo " *** Script Exit: app-adjustments.sh"
+echo "*** Script Exit: app-adjustments.sh"
 echo
 
 exit 0
