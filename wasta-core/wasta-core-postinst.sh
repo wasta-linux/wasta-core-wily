@@ -317,7 +317,8 @@ fi
 # ------------------------------------------------------------------------------
 
 # set as system-wide default input method:
-im-config -n ibus
+# rik: removing for 15.10: I think not needed 
+# im-config -n ibus
 
 # set as current user default input method:
 # rik: not sure if needed: seems that ibus properly triggering (??)
@@ -342,11 +343,10 @@ bash $DIR/scripts/app-adjustments.sh
 # ------------------------------------------------------------------------------
 
 # some logs need different ownership than "root:root": remastersys doesn't do this right
-# ??? NEEDED 15.10/16.04 ???
-#chown -f syslog:adm /var/log/syslog*
-#chown -f syslog:adm /var/log/auth.log*
-#chown -f syslog:adm /var/log/kern.log*
-#chown -f syslog:adm /var/log/mail.log*
+chown -f syslog:adm /var/log/syslog*
+chown -f syslog:adm /var/log/auth.log*
+chown -f syslog:adm /var/log/kern.log*
+chown -f syslog:adm /var/log/mail.log*
 
 # ------------------------------------------------------------------------------
 # disable apport error reporting

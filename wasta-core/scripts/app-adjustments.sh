@@ -8,10 +8,13 @@
 #   - chromium app launcher processing
 #   - gpaste, gcolor2 icon changes to use others available in Moka icon theme
 # 2015-11-10 rik: ubiquity apt-setup: commenting out replace of sources.list:
-#      we want to just go with what live-cd has, as often minor countries mirror
-#      not very good: instead stick to main repo, user can later change if they
-#      want.
-#   - casper: added fix here instead of in postinst   
+#     we want to just go with what live-cd has, as often minor countries mirror
+#     not very good: instead stick to main repo, user can later change if they
+#     want.
+#   - casper: added fix here instead of in postinst
+# 2015-11-11 rik: removing ubiquity tweak: problem was with PinguyBuilder and
+#     is now fixed in wasta-remastersys
+#   - remove PinguyBuilder processing, add wasta-remastersys processing
 #
 # ==============================================================================
 
@@ -396,32 +399,14 @@ then
 fi
 
 # ------------------------------------------------------------------------------
-# PinguyBuilder: hide GUI from start menu
-# ------------------------------------------------------------------------------
-if [ -e /usr/share/applications/PinguyBuilder-gtk.desktop ];
-then
-    desktop-file-edit --set-key=NoDisplay --set-value=true \
-        /usr/share/applications/PinguyBuilder-gtk.desktop
-fi
-
-# set splash screen to Wasta-Linux default
-if [ -e /usr/bin/PinguyBuilder ];
-then
-    cp /lib/plymouth/themes/wasta-logo/wasta-linux-vga.png \
-        /etc/PinguyBuilder/isolinux/splash.png
-fi
-
-# ------------------------------------------------------------------------------
 # ubiquity
 # ------------------------------------------------------------------------------
-# comment out creation of new /etc/apt/sources.list as we want to just use
-#   what the livecd already has for a sources.list: often minor countries
-#   mirrors are not adequate.  User can always change mirror later themselves,
-#   but we will default to using the MAIN ubuntu mirrors
-if [ -e /usr/lib/ubiquity/apt-setup/apt-setup ];
+if [ -e /usr/share/ubiquity/localechooser-apply ];
 then
-    sed -i -e 's@^.*\(mv $ROOT/etc/apt/sources.list.new $ROOT/etc/apt/sources.list\)@# \1@' \
-        /usr/lib/ubiquity/apt-setup/apt-setup
+    # ET is hard-coded to 'am' language, regardless of what user chose
+    #   remove this override: Amharic is not wanted as hardcoded language
+    #   Most Ethiopians will use English
+    sed -i -e '\@deflang=am@d' /usr/share/ubiquity/localechooser-apply
 fi
 
 # ------------------------------------------------------------------------------
@@ -442,6 +427,34 @@ then
     # hide from main menu (terminal only)
     desktop-file-edit --set-key=NoDisplay --set-value=true \
         /usr/share/applications/vim.desktop
+fi
+
+# ------------------------------------------------------------------------------
+# wasta-remastersys
+# ------------------------------------------------------------------------------
+if [ -e /etc/wasta-remastersys.conf ];
+then
+    # change to wasta-linux splash screen
+    sed -i -e 's@SPLASHPNG=.*@SPLASHPNG="/lib/plymouth/themes/wasta-logo/wasta-linux-vga.png"@' \
+        /etc/wasta-remastersys.conf
+    
+    # set default CD Label and ISO name
+    WASTA_ID="$(sed -n "\@^ID=@s@^ID=@@p" /etc/wasta-release)"
+    WASTA_VERSION="$(sed -n "\@^VERSION=@s@^VERSION=@@p" /etc/wasta-release)"
+    ARCH=$(uname -m)
+    if [ $ARCH == 'x86_64' ];
+    then
+        WASTA_ARCH="64bit"
+    else
+        WASTA_ARCH="32bit"
+    fi
+    WASTA_DATE=$(date +%F)
+    
+    sed -i -e 's@LIVECDLABEL=.*@LIVECDLABEL="$WASTA_ID $WASTA_VERSION $WASTA_ARCH"@' \
+        /etc/wasta-remastersys.conf
+
+    sed -i -e 's@CUSTOMISO=.*@CUSTOMISO="$WASTA_ID-$WASTA_VERSION-$WASTA_ARCH-$WASTA_DATE"@' \
+        /etc/wasta-remastersys.conf
 fi
 
 # ------------------------------------------------------------------------------

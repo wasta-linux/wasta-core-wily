@@ -269,14 +269,15 @@ echo
 # pinta: MS Paint alternative: more simple for new users than gimp
 # shotwell: photo editor / manager (can edit single files easily)
 # skype
-#   libpulse0:i386: needed for skype sound to work, not listed as dependency
+#    libpulse0:i386: needed for skype sound to work, not listed as dependency
 # soundconverter: convert audio formats
 # ssh: remote access
 # testdisk: photorec tool for recovery of deleted files
 # traceroute: terminal utility
 # tracker, gir1.2-tracker-1.0: gnome-shell search tool
 # ttf-mscorefonts-installer: installs standard Microsoft fonts
-# ubiquity: add here since needs tweaking (in app-adjustments.sh)
+# ubiquity ubiquity-slideshow-ubuntu:
+#   add here since needs tweaking (in app-adjustments.sh)
 # ubuntu-restricted-extras: mp3, flash, etc.
 # vlc
 # w32codecs: several proprietary Windows audio and video codecs
@@ -357,7 +358,7 @@ apt-get $YES install \
     traceroute \
     tracker gir1.2-tracker-1.0 \
     ttf-mscorefonts-installer \
-    ubiquity \
+    ubiquity ubiquity-slideshow-ubuntu \
     ubuntu-restricted-extras \
     vlc \
     wasta-backup \

@@ -1,3 +1,14 @@
+wasta-core-wily (15.10.0.16) wily; urgency=medium
+
+  * debian/control: adding wasta-remastersys dependency, removing PinguyBuilder 
+  * app-adjustments.sh: adding wasta-remastersys processing,
+    - removing PinguyBuilder processing
+  * debian/lintian-overrides: adding to ignore warnings about images and
+    multiple license files (both of which come from the included firefox
+    addons and gnome-shell extensions)
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Wed, 11 Nov 2015 16:06:02 +0300
+
 wasta-core-wily (15.10.0.15) wily; urgency=medium
 
   * install-files/firefox-extensions: new version of arc-darker theme
