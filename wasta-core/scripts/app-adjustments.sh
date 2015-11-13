@@ -454,7 +454,7 @@ then
     sed -i -e "s@LIVECDLABEL=.*@LIVECDLABEL=\"$WASTA_ID $WASTA_VERSION $WASTA_ARCH\"@" \
         /etc/wasta-remastersys.conf
 
-    sed -i -e "s@CUSTOMISO=.*@CUSTOMISO=\"$WASTA_ID-$WASTA_VERSION-$WASTA_ARCH-$WASTA_DATE\"@" \
+    sed -i -e "s@CUSTOMISO=.*@CUSTOMISO=\"$WASTA_ID-$WASTA_VERSION-$WASTA_ARCH-$WASTA_DATE.iso\"@" \
         /etc/wasta-remastersys.conf
 fi
 
