@@ -1,3 +1,9 @@
+wasta-core-wily (15.10.0.17) wily; urgency=medium
+
+  * app-adjustments.sh: fix syntax of wasta-remastersys.conf variables
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Fri, 13 Nov 2015 09:05:47 +0300
+
 wasta-core-wily (15.10.0.16) wily; urgency=medium
 
   * debian/control: adding wasta-remastersys dependency, removing PinguyBuilder 

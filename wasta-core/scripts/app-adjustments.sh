@@ -15,6 +15,7 @@
 # 2015-11-11 rik: removing ubiquity tweak: problem was with PinguyBuilder and
 #     is now fixed in wasta-remastersys
 #   - remove PinguyBuilder processing, add wasta-remastersys processing
+# 2015-11-13 rik: fixing syntax of variables for wasta-remastersys.conf
 #
 # ==============================================================================
 
@@ -450,10 +451,10 @@ then
     fi
     WASTA_DATE=$(date +%F)
     
-    sed -i -e 's@LIVECDLABEL=.*@LIVECDLABEL="$WASTA_ID $WASTA_VERSION $WASTA_ARCH"@' \
+    sed -i -e "s@LIVECDLABEL=.*@LIVECDLABEL=\"$WASTA_ID $WASTA_VERSION $WASTA_ARCH\"@" \
         /etc/wasta-remastersys.conf
 
-    sed -i -e 's@CUSTOMISO=.*@CUSTOMISO="$WASTA_ID-$WASTA_VERSION-$WASTA_ARCH-$WASTA_DATE"@' \
+    sed -i -e "s@CUSTOMISO=.*@CUSTOMISO=\"$WASTA_ID-$WASTA_VERSION-$WASTA_ARCH-$WASTA_DATE\"@" \
         /etc/wasta-remastersys.conf
 fi
 
