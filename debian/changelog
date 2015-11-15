@@ -1,4 +1,11 @@
-wasta-core-wily (15.10.0.18) wasta; urgency=medium
+wasta-core-wily (15.10.0.19) wily; urgency=medium
+
+  * gnomenu schema: set default key to ['<Primary>space']
+  * app-adjustments.sh: fix default app settings
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Sun, 15 Nov 2015 14:47:08 +0300
+
+wasta-core-wily (15.10.0.18) wily; urgency=medium
 
   * app-adjustments.sh: add ".iso" to wasta-remastersys.conf iso name 
 

@@ -52,8 +52,6 @@ fi
 
 # TODO: if ROOT, then run rest of script as logged in user 
 
-
-
 if ! [ "$AUTO" ];
 then
     # prompt user
@@ -197,7 +195,7 @@ if ! [ "$AUTO" ];
 then
     # prompt user
     zenity --info --title "wasta [Reset]: Finished" --no-wrap --height=150 --width=450 \
-        --window-icon=/usr/share/icons/hicolor/64x64/apps/wasta-menus.png \
+        --window-icon=/usr/share/icons/hicolor/64x64/apps/wasta-linux.png \
         --text="$MSG"
 else
     echo
