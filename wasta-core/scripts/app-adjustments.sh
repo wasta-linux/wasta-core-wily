@@ -486,46 +486,72 @@ echo
 echo "*** Adjusting default applications"
 echo
 
-# preferred way to set defaults is with xdg-mime (but it was said that the
-#   default function shouldn't be used as root?  indeed gdebi yells, saying
-#
-#   touch: cannot touch ‘/root/.local/share/applications/mimeapps.list’: No such file or directory
-#   /usr/bin/xdg-mime: 799: /usr/bin/xdg-mime: cannot create /root/.local/share/applications/mimeapps.list.new: Directory nonexistent
-#
-#   but I think it is OK.
-xdg-mime default gdebi.desktop application/x-deb
-xdg-mime default org.gnome.gedit.desktop text/plain
-xdg-mime default org.gnome.font-viewer.desktop application/x-font-ttf
-
-# can't sort out how to make vlc default for ALL audio and video types, so
-#   have to resort to sed
-if ! [ -e /etc/gnome/defaults.list.save ];
+# preferred way to set defaults is with xdg-mime (but its man says that the
+#   default function shouldn't be used as root?)
+DEFAULTS_FILE=/etc/gnome/defaults.list
+if ! [ -e $DEFAULTS_FILE.save ];
 then
-    cp /etc/gnome/defaults.list /etc/gnome/defaults.list.save
+    cp $DEFAULTS_FILE $DEFAULTS_FILE.save
 fi
 
-sed -i -e 's@\(audio.*\)=.*@\1=vlc.desktop@' \
-    /etc/gnome/defaults.list
-sed -i -e 's@\(video.*\)=.*@\1=vlc.desktop@' \
-    /etc/gnome/defaults.list
+sed -i \
+    -e 's@\(audio.*\)=.*@\1=vlc.desktop@' \
+    -e 's@\(video.*\)=.*@\1=vlc.desktop@' \
+    -e 's@totem.desktop@vlc.desktop@' \
+    -e 's@\(text/plain\)=.*@\1=org.gnome.gedit.desktop@' \
+    -e 's@\(application/x-deb\)=.*@\1=gdebi.desktop@' \
+    -e 's@\(application/x-debian-package\)=.*@\1=gdebi.desktop@' \
+    -e 's@\(text/xml\)=.*@\1=org.gnome.gedit.desktop@' \
+    -e '$a application/x-extension-htm=firefox.desktop' \
+    -e '$a application/x-font-ttf=org.gnome.font-viewer.desktop' \
+    -e '\@application/x-extension-htm=@d' \
+    -e '\@application/x-font-ttf=@d' \
+    $DEFAULTS_FILE
 
-if ! [ -e /usr/share/applications/defaults.list.save ];
+DEFAULTS_FILE=/usr/share/applications/defaults.list
+
+if ! [ -e $DEFAULTS_FILE.save ];
 then
-    cp /usr/share/applications/defaults.list \
-        /usr/share/applications/defaults.list.save
+    cp $DEFAULTS_FILE \
+        $DEFAULTS_FILE.save
 fi
-sed -i -e 's@\(audio.*\)=.*@\1=vlc.desktop@' \
-    /usr/share/applications/defaults.list
-sed -i -e 's@\(video.*\)=.*@\1=vlc.desktop@' \
-    /usr/share/applications/defaults.list
 
-if [ -e /usr/share/gnome/applications/defaults.list ];
+sed -i \
+    -e 's@\(audio.*\)=.*@\1=vlc.desktop@' \
+    -e 's@\(video.*\)=.*@\1=vlc.desktop@' \
+    -e 's@totem.desktop@vlc.desktop@' \
+    -e 's@\(text/plain\)=.*@\1=org.gnome.gedit.desktop@' \
+    -e 's@\(application/x-deb\)=.*@\1=gdebi.desktop@' \
+    -e 's@\(application/x-debian-package\)=.*@\1=gdebi.desktop@' \
+    -e 's@\(text/xml\)=.*@\1=org.gnome.gedit.desktop@' \
+    -e '$a application/x-extension-htm=firefox.desktop' \
+    -e '$a application/x-font-ttf=org.gnome.font-viewer.desktop' \
+    -e '\@application/x-extension-htm=@d' \
+    -e '\@application/x-font-ttf=@d' \
+    $DEFAULTS_FILE
+
+DEFAULTS_FILE=/usr/share/gnomeapplications/defaults.list
+
+if [ -e $DEFAULTS_FILE ];
 then
-    if ! [ -e /usr/share/gnome/applications/defaults.list.save ];
+    if ! [ -e $DEFAULTS_FILE.save ];
     then
-        cp /usr/share/gnome/applications/defaults.list \
-            /usr/share/gnome/applications/defaults.list.save
+        cp $DEFAULTS_FILE \
+            $DEFAULTS_FILE.save
     fi
+    sed -i \
+        -e 's@\(audio.*\)=.*@\1=vlc.desktop@' \
+        -e 's@\(video.*\)=.*@\1=vlc.desktop@' \
+        -e 's@totem.desktop@vlc.desktop@' \
+        -e 's@\(text/plain\)=.*@\1=org.gnome.gedit.desktop@' \
+        -e 's@\(application/x-deb\)=.*@\1=gdebi.desktop@' \
+        -e 's@\(application/x-debian-package\)=.*@\1=gdebi.desktop@' \
+        -e 's@\(text/xml\)=.*@\1=org.gnome.gedit.desktop@' \
+        -e '$a application/x-extension-htm=firefox.desktop' \
+        -e '$a application/x-font-ttf=org.gnome.font-viewer.desktop' \
+        -e '\@application/x-extension-htm=@d' \
+        -e '\@application/x-font-ttf=@d' \
+        $DEFAULTS_FILE
 fi
 
 # ------------------------------------------------------------------------------
