@@ -16,6 +16,7 @@
 #     is now fixed in wasta-remastersys
 #   - remove PinguyBuilder processing, add wasta-remastersys processing
 # 2015-11-13 rik: fixing syntax of variables for wasta-remastersys.conf
+# 2015-11-21 rik: updating wasta-remastersys.conf location
 #
 # ==============================================================================
 
@@ -193,7 +194,10 @@ then
         /usr/share/applications/gnome-control-center.desktop
 fi
 
-# Would be good to add following keywords for gnomenu, but currently it doesn't look at keywords, and if I add these to the comment it stretches the menu to fill the whole screen
+# Would be good to add following keywords for gnomenu, but currently it doesn't
+# look at keywords, and if I add these to the comment it stretches the menu to
+# fill the whole screen: keeping list in hope that in future can be added to
+# keyterms
 
 #applications
 #backgrounds
@@ -433,11 +437,12 @@ fi
 # ------------------------------------------------------------------------------
 # wasta-remastersys
 # ------------------------------------------------------------------------------
-if [ -e /etc/wasta-remastersys.conf ];
+WASTA_REMASTERSYS_CONF=/etc/wasta/remastersys/wasta-remastersys.conf
+if [ -e "$WASTA_REMASTERSYS_CONF" ];
 then
     # change to wasta-linux splash screen
     sed -i -e 's@SPLASHPNG=.*@SPLASHPNG="/lib/plymouth/themes/wasta-logo/wasta-linux-vga.png"@' \
-        /etc/wasta-remastersys.conf
+        "$WASTA_REMASTERSYS_CONF"
     
     # set default CD Label and ISO name
     WASTA_ID="$(sed -n "\@^ID=@s@^ID=@@p" /etc/wasta-release)"
@@ -452,10 +457,11 @@ then
     WASTA_DATE=$(date +%F)
     
     sed -i -e "s@LIVECDLABEL=.*@LIVECDLABEL=\"$WASTA_ID $WASTA_VERSION $WASTA_ARCH\"@" \
-        /etc/wasta-remastersys.conf
-
-    sed -i -e "s@CUSTOMISO=.*@CUSTOMISO=\"$WASTA_ID-$WASTA_VERSION-$WASTA_ARCH-$WASTA_DATE.iso\"@" \
-        /etc/wasta-remastersys.conf
+           -e "s@CUSTOMISO=.*@CUSTOMISO=\"$WASTA_ID-$WASTA_VERSION-$WASTA_ARCH-$WASTA_DATE.iso\"@" \
+        "$WASTA_REMASTERSYS_CONF"
+    
+    #LEGACY: remove old wasta-remastersys.conf so users not confused
+    rm -f /etc/wasta/wasta-remastersys.conf
 fi
 
 # ------------------------------------------------------------------------------
