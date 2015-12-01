@@ -1,3 +1,22 @@
+wasta-core-wily (15.10.0.21) wily; urgency=medium
+
+  * debian/control: remove gnome-shell-extension-suspend-button dependency
+    Instead replace with inclusion of gnome-shell extension, since the
+    package one is not compatible with packages from gnome staging ppa
+    and will cause wasta-core-wily to be removed.
+  * install-files/extensions/suspend-button@laserb: add
+  * hopefully with this adjustment can keep wasta-core-wily installed when
+    using gnome3-staging ppa (for testing 3.18 series gnome items).
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Tue, 01 Dec 2015 21:32:10 +0300
+
+wasta-core-wily (15.10.0.20) wily; urgency=medium
+
+  * app-adjustments.sh: chang wasta-remastersys.conf location based on
+    new updates to wasta-remastersys by jcl
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Sat, 21 Nov 2015 08:30:16 +0300
+
 wasta-core-wily (15.10.0.19) wily; urgency=medium
 
   * gnomenu schema: set default key to ['<Primary>space']

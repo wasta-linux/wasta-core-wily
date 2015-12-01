@@ -8,7 +8,7 @@ Homepage: https://github.com/wasta-linux/wasta-core-wily
 
 Package: wasta-core-wily
 Architecture: any
-Depends: gir1.2-gda-5.0, gnome-control-center, gnome-shell, gnome-shell-extension-suspend-button, gnome-shell-extensions, gnome-shell-extensions-gpaste, gnome-tweak-tool, lightdm, moka-icon-theme, nautilus-admin, wasta-backup, wasta-menus, wasta-offline, wasta-remastersys, wasta-resources-core, wmctrl, xmlstarlet, ${shlibs:Depends}, ${misc:Depends}
+Depends: gir1.2-gda-5.0, gnome-control-center, gnome-shell, gnome-shell-extensions, gnome-shell-extensions-gpaste, gnome-tweak-tool, lightdm, moka-icon-theme, nautilus-admin, wasta-backup, wasta-menus, wasta-offline, wasta-remastersys, wasta-resources-core, wmctrl, xmlstarlet, ${shlibs:Depends}, ${misc:Depends}
 Conflicts: gdm
 Description: Wasta-Linux 15.10 Core
  Wasta-Linux core system setup package for Ubuntu 15.10 'wily'
