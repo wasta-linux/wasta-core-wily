@@ -1,3 +1,12 @@
+wasta-core-wily (15.10.0.22) wily; urgency=medium
+
+  * debian/control: add gnome-shell-extension-suspend-button as a "conflicts"
+    or else not removed by the time wasta-core-wily files get put in place
+    and get a conflict with files from wasta-core-wily manual install of
+    the extension.
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Sat, 12 Dec 2015 11:40:44 +0300
+
 wasta-core-wily (15.10.0.21) wily; urgency=medium
 
   * debian/control: remove gnome-shell-extension-suspend-button dependency
